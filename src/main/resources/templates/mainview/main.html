@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Game</title>
+    <link rel="stylesheet" href="/static/assets/css/main.css" type="text/css" th:href="@{/assets/css/main.css}">
+
+</head>
+<body>
+<div class="body-container">
+    <div class="main-container">
+        <h1 id="title">로또 번호 입력</h1>
+
+        <form action="/save" method="post" class="form">
+            <div class="input-box-wrap" th:object="${lottoDTO}">
+
+                <input type="text" class="input-box" th:field="*{lottoNumber1}">
+                <input type="text" placeholder="Lotto Number 2" class="input-box" th:field="*{lottoNumber2}">
+                <input type="text" placeholder="Lotto Number 3" class="input-box" th:field="*{lottoNumber3}">
+            </div>
+            <button type="submit" class="button">Save</button>
+        </form>
+
+        <form action="/reset" method="get">
+            <button class="button">Reset</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
