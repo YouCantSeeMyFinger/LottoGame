@@ -5,9 +5,11 @@ import com.example.demo.service.LottoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Slf4j
@@ -21,12 +23,14 @@ public class LottoController {
      */
     @GetMapping("/")
     public String mainView(@ModelAttribute("lottoDTO") LottoDTO lottoDTO) {
+        // log.info("lottoDTO => {}", lottoDTO);
         return "/mainview/main";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("lottoDTO") LottoDTO lottoDTO) {
-        log.info("LottoDTO => {}", lottoDTO);
+    public String save(@ModelAttribute("lottoDTO") LottoDTO lottoDTO, RedirectAttributes redirectAttributes) {
+        // log.info("LottoDTO => {}", lottoDTO);
+        redirectAttributes.addFlashAttribute("lottoDTO", lottoDTO);
         lottoService.save(lottoDTO);
         return "redirect:/";
     }

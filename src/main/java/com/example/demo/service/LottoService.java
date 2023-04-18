@@ -19,6 +19,7 @@ public class LottoService {
     private final LottoRepoImpl lottoRepo;
 
     public void save(LottoDTO lottoDTO) {
+        lottoRepo.save(duplicated(lottoDTO));
     }
 
     public int createNumber() {
