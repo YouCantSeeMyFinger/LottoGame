@@ -13,9 +13,9 @@
 
         <form action="/save" method="post" class="form">
             <div class="input-box-wrap" th:object="${lottoDTO}">
-                <input type="text" class="input-box" th:field="*{lottoNumber1}" placeholder="숫자를 입력해주세요.">
-                <input type="text" class="input-box" th:field="*{lottoNumber2}" placeholder="숫자를 입력해주세요.">
-                <input type="text" class="input-box" th:field="*{lottoNumber3}" placeholder="숫자를 입력해주세요.">
+                <input type="text" class="input-box" th:field="*{lottoNumber1}" placeholder="Insert Lotto Number">
+                <input type="text" class="input-box" th:field="*{lottoNumber2}" placeholder="Insert Lotto Number">
+                <input type="text" class="input-box" th:field="*{lottoNumber3}" placeholder="Insert Lotto Number">
             </div>
             <button type="submit" class="button">Save</button>
         </form>

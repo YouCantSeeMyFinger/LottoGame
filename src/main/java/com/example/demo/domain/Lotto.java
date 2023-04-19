@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class Lotto {
-    private int LottoNumber1;
-    private int LottoNumber2;
-    private int LottoNumber3;
-    private int LottoNumber4;
-    private int LottoNumber5;
-    private int LottoNumber6;
+    private Integer LottoNumber1;
+    private Integer LottoNumber2;
+    private Integer LottoNumber3;
+    private Integer LottoNumber4;
+    private Integer LottoNumber5;
+    private Integer LottoNumber6;
 }
