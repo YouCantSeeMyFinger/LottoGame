@@ -1,6 +1,8 @@
 package com.example.demo.domain;
 
-import lombok.Data;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,7 +11,12 @@ import lombok.ToString;
 @Setter
 @ToString
 public class LottoDTO {
-    private int LottoNumber1;
-    private int LottoNumber2;
-    private int LottoNumber3;
+    // @NotBlank , @NotNull , @Size , @NotEmpty는 Primitive타입에 사용불가
+
+
+    private Integer LottoNumber1;
+
+    private Integer LottoNumber2;
+
+    private Integer LottoNumber3;
 }
