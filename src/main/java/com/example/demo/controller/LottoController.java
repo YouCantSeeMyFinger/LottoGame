@@ -7,13 +7,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
 
 @Controller
 @Slf4j
@@ -32,8 +31,17 @@ public class LottoController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("lottoDTO") LottoDTO lottoDTO, RedirectAttributes redirectAttributes) {
+    public String save(@Validated @ModelAttribute("lottoDTO") LottoDTO lottoDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         // log.info("LottoDTO => {}", lottoDTO);
+
+        if (bindingResult.hasErrors()) {
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                log.info("ErrorField => {} , ErrorMessage => {}", fieldError.getField(), fieldError.getDefaultMessage());
+            }
+            redirectAttributes.addFlashAttribute("lottoDTO", lottoDTO);
+            return "redirect:/";
+        }
+
         redirectAttributes.addFlashAttribute("lottoDTO", lottoDTO);
         lottoService.save(lottoDTO);
         return "redirect:/";
