@@ -2,15 +2,12 @@ package com.example.demo.service;
 
 import com.example.demo.domain.Lotto;
 import com.example.demo.domain.LottoDTO;
-import com.example.demo.service.repository.LottoRepoImpl;
+import com.example.demo.repository.LottoRepoImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
-import java.util.Random;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -53,5 +50,7 @@ public class LottoService {
         lottoRepo.reset();
     }
 
-
+    public List<Lotto> findAll() {
+        return lottoRepo.findAll();
+    }
 }

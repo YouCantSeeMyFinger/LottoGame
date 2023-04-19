@@ -1,11 +1,10 @@
-package com.example.demo.service.repository;
+package com.example.demo.repository;
 
 import com.example.demo.domain.Lotto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 @Slf4j
@@ -26,6 +25,11 @@ public class LottoRepoImpl implements LottoRepo {
     public void reset() {
         repo.clear();
         log.info("repo => {}", repo);
+    }
+
+    @Override
+    public List<Lotto> findAll() {
+        return new ArrayList<>(repo.values());
     }
 
 

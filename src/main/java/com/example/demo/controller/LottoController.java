@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.Lotto;
 import com.example.demo.domain.LottoDTO;
 import com.example.demo.service.LottoService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -39,6 +42,12 @@ public class LottoController {
     public String reset() {
         lottoService.reset();
         return "redirect:/";
+    }
+
+    @PostMapping("/show")
+    public String show(Model model) {
+        model.addAttribute("values", lottoService.findAll());
+        return "/show";
     }
 
 
