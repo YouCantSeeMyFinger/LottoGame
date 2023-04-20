@@ -9,13 +9,25 @@
 <body>
 <div class="body-container">
     <div class="main-container">
-        <h1 id="title">로또 번호 입력</h1>
+        <h1 id="title" th:text="#{lotto.title}"></h1>
 
         <form action="/save" method="post" class="form">
             <div class="input-box-wrap" th:object="${lottoDTO}">
-                <input type="text" class="input-box" th:field="*{lottoNumber1}" placeholder="Insert Lotto Number">
-                <input type="text" class="input-box" th:field="*{lottoNumber2}" placeholder="Insert Lotto Number">
-                <input type="text" class="input-box" th:field="*{lottoNumber3}" placeholder="Insert Lotto Number">
+                <div class="layout-box">
+                    <input type="text" class="input-box" th:field="*{lottoNumber1}" placeholder="Insert Lotto Number"
+                           th:errorclass="field-error">
+                    <div class="error" th:if="${#fields.hasErrors()}" th:errors="*{lottoNumber1}"></div>
+                </div>
+                <div class="layout-box">
+                    <input type="text" class="input-box" th:field="*{lottoNumber2}" placeholder="Insert Lotto Number"
+                           th:errorclass="field-error">
+                    <div class="error" th:if="${#fields.hasErrors()}" th:errors="*{lottoNumber2}"></div>
+                </div>
+                <div class="layout-box">
+                    <input type="text" class="input-box" th:field="*{lottoNumber3}" placeholder="Insert Lotto Number"
+                           th:errorclass="field-error">
+                    <div class="error" th:if="${#fields.hasErrors()}" th:errors="*{lottoNumber3}"></div>
+                </div>
             </div>
             <button type="submit" class="button">Save</button>
         </form>

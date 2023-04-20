@@ -26,24 +26,18 @@ public class LottoController {
      */
     @GetMapping("/")
     public String mainView(@ModelAttribute("lottoDTO") LottoDTO lottoDTO) {
-        // log.info("lottoDTO => {}", lottoDTO);
+        log.info("lottoDTO => {}", lottoDTO);
         return "/mainview/main";
     }
 
     @PostMapping("/save")
     public String save(@Validated @ModelAttribute("lottoDTO") LottoDTO lottoDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-        // log.info("LottoDTO => {}", lottoDTO);
-
         if (bindingResult.hasErrors()) {
-            for (FieldError fieldError : bindingResult.getFieldErrors()) {
-                log.info("ErrorField => {} , ErrorMessage => {}", fieldError.getField(), fieldError.getDefaultMessage());
-            }
-            redirectAttributes.addFlashAttribute("lottoDTO", lottoDTO);
-            return "redirect:/";
+            log.info("ErrorType => {}", bindingResult);
+            return "/mainview/main";
         }
-
-        redirectAttributes.addFlashAttribute("lottoDTO", lottoDTO);
         lottoService.save(lottoDTO);
+        redirectAttributes.addFlashAttribute("lottoDTO", lottoDTO);
         return "redirect:/";
     }
 

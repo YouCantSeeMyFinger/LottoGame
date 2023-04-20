@@ -62,3 +62,18 @@
     flex-direction: column;
     align-items: center;
 }
+
+.field-error {
+    border: 2px solid red;
+}
+
+.layout-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error{
+    color: red;
+}
