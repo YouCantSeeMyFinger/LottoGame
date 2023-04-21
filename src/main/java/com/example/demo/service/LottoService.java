@@ -53,4 +53,8 @@ public class LottoService {
     public List<Lotto> findAll() {
         return lottoRepo.findAll();
     }
+
+    public Lotto findId(Integer lottoKey) {
+        return lottoRepo.findId(lottoKey);
+    }
 }

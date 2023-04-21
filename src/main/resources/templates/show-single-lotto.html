@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Game</title>
+    <link rel="stylesheet" href="/static/assets/css/show-single-lotto.css" type="text/css"
+          th:href="@{/assets/css/show-single-lotto.css}">
+
+</head>
+<body>
+<div class="body-container">
+    <div class="main-container">
+        <h1 id="title" th:text="#{lotto.single.number}"></h1>
+        <div class="value-wrapper">
+            <span class="lotto-value" th:text="${lottoObject.getLottoNumber1()}"></span>
+            <span class="lotto-value" th:text="${lottoObject.getLottoNumber2()}"></span>
+            <span class="lotto-value" th:text="${lottoObject.getLottoNumber3()}"></span>
+            <span class="lotto-value" th:text="${lottoObject.getLottoNumber4()}"></span>
+            <span class="lotto-value" th:text="${lottoObject.getLottoNumber5()}"></span>
+            <span class="lotto-value" th:text="${lottoObject.getLottoNumber6()}"></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

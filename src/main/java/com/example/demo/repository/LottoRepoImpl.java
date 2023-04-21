@@ -32,5 +32,10 @@ public class LottoRepoImpl implements LottoRepo {
         return new ArrayList<>(repo.values());
     }
 
+    @Override
+    public Lotto findId(Integer lottoKey) {
+        return repo.get(lottoKey);
+    }
+
 
 } // End Class

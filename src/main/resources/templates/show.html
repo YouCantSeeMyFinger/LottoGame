@@ -9,9 +9,9 @@
 <body>
 <div class="body-container">
     <div class="main-container">
-        <h1 id="title">로또 번호 확인</h1>
+        <h1 id="title" th:text="#{lotto.all.result}"></h1>
         <div class="value-wrapper" th:each="value , status : ${values}">
-            <span class="lotto-value">Key :: [[${status.count}]]</span>
+            <span class="lotto-value"><a th:href="@{/lotto-key/{status}(status=${status.count})}" id="link">Key :: [[${status.count}]]</a></span>
             <span class="lotto-value">[[${value.getLottoNumber1}]]</span>
             <span class="lotto-value">[[${value.getLottoNumber2}]]</span>
             <span class="lotto-value">[[${value.getLottoNumber3}]]</span>

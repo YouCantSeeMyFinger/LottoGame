@@ -12,4 +12,6 @@ public interface LottoRepo {
 
     Collection<Lotto> findAll();
 
+    Lotto findId(Integer lottoKey);
+
 }
