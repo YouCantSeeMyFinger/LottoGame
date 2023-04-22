@@ -48,6 +48,7 @@ public class LottoService {
 
     public void reset() {
         lottoRepo.reset();
+
     }
 
     public List<Lotto> findAll() {

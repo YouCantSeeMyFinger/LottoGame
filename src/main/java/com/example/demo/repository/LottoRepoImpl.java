@@ -24,6 +24,7 @@ public class LottoRepoImpl implements LottoRepo {
     @Override
     public void reset() {
         repo.clear();
+        sequence = 0;
         log.info("repo => {}", repo);
     }
 

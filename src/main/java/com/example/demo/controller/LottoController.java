@@ -41,21 +41,26 @@ public class LottoController {
 
     @GetMapping("/reset")
     public String reset() {
+        log.info("reset invoked :: method");
         lottoService.reset();
         return "redirect:/";
     }
 
     @PostMapping("/show")
     public String show(Model model) {
+        log.info("invoked show:: method");
+        log.info("findAll => {} ", lottoService.findAll());
         model.addAttribute("values", lottoService.findAll());
         return "/show";
     }
 
     @GetMapping("/lotto-key/{status}")
     public String findId(@PathVariable Integer status, Model model) {
+        Lotto id = lottoService.findId(status);
+
         log.info("PathVariable => {} ", status);
-        Lotto lottoObject = lottoService.findId(status);
-        model.addAttribute("lottoObject", lottoObject);
+        log.info("findId => {}", id);
+        model.addAttribute("lottoObject", id);
         return "/show-single-lotto";
     }
 
