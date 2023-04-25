@@ -28,6 +28,7 @@ public class LottoRepoImpl implements LottoRepo {
         log.info("repo => {}", repo);
     }
 
+
     @Override
     public List<Lotto> findAll() {
         return new ArrayList<>(repo.values());
