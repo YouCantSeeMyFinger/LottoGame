@@ -64,5 +64,10 @@ public class LottoController {
         return "/show-single-lotto";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "/login/login";
+    }
+
 
 } //End class

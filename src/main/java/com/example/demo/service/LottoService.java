@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.domain.Lotto;
 import com.example.demo.domain.LottoDTO;
-import com.example.demo.repository.LottoRepoImpl;
+import com.example.demo.repository.lotto.LottoRepoImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

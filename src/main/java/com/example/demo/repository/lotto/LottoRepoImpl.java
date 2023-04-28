@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo.repository.lotto;
 
 import com.example.demo.domain.Lotto;
 import lombok.extern.slf4j.Slf4j;
