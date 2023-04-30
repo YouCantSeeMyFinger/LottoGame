@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/assets/css/membership.css" type="text/css"
+          th:href="@{/assets/css/membership.css}">
+    <title>회원가입</title>
+</head>
+<body>
+
+<div class="body-container">
+    <div class="main-container">
+        <form action="/member-add" method="post" th:object="${member}" id="member-form">
+
+            <h2 id="title">회원가입 폼</h2>
+
+            <div class="input-box-wrap">
+                <label for="loginId">ID</label>
+                <input type="text" id="loginId" th:field="*{loginId}" th:errorclass="field-error"
+                       placeholder="아이디를 입력해주세요.">
+
+                <div th:errors="*{loginId}" class="field-error"></div>
+            </div>
+
+            <div class="input-box-wrap">
+                <label for="password">Password</label>
+                <input type="password" id="password" th:field="*{loginPassword}" placeholder="비밀번호를 입력해주세요."
+                       th:errorclass="field-error" class="input-box">
+
+                <div th:errors="*{loginPassword}" class="field-error"></div>
+            </div>
+
+            <button type="submit" class="buttons">가입</button>
+            <button type="button" th:onclick="|location.href='/'|" class="buttons">취소</button>
+
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>
