@@ -17,7 +17,7 @@ public class MemberRepository implements IMemberRepo {
     @Override
     public Member save(Member member) {
         member.setId(sequence);
-        log.info("memberId => {}", member.getId());
+        log.info("memberId => {}", memberRepo);
         return memberRepo.put(member.getId(), member);
     }
 

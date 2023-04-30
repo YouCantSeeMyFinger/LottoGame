@@ -17,7 +17,7 @@
 
             <h2 id="title">회원가입 폼</h2>
 
-            <div class="input-box-wrap">
+            <div class="member-box-wrap">
                 <label for="loginId">ID</label>
                 <input type="text" id="loginId" th:field="*{loginId}" th:errorclass="field-error"
                        placeholder="아이디를 입력해주세요.">
@@ -25,10 +25,10 @@
                 <div th:errors="*{loginId}" class="field-error"></div>
             </div>
 
-            <div class="input-box-wrap">
+            <div class="member-box-wrap">
                 <label for="password">Password</label>
                 <input type="password" id="password" th:field="*{loginPassword}" placeholder="비밀번호를 입력해주세요."
-                       th:errorclass="field-error" class="input-box">
+                       th:errorclass="field-error" autocomplete="off">
 
                 <div th:errors="*{loginPassword}" class="field-error"></div>
             </div>
