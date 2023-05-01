@@ -33,6 +33,12 @@
                 <div th:errors="*{loginPassword}" class="field-error"></div>
             </div>
 
+            <div class="member-box-wrap">
+                <label for="name">name</label>
+                <input type="text" id="name" th:field="*{name}" th:errorclass="field-error" placeholder="이름을 입력해주세요.">
+                <div th:errors="*{name}" class="field-error"></div>
+            </div>
+
             <button type="submit" class="buttons">가입</button>
             <button type="button" th:onclick="|location.href='/'|" class="buttons">취소</button>
 

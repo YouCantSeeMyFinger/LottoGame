@@ -16,5 +16,7 @@ public interface IMemberRepo {
 
     Optional<Member> findLoginId(String loginId);
 
+    boolean duplicatedMember(Member member);
+
     void reset();
 }

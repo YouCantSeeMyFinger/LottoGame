@@ -24,7 +24,6 @@ public class LottoController {
      */
     @GetMapping("/")
     public String mainView(@ModelAttribute("lottoDTO") LottoDTO lottoDTO) {
-        log.info("lottoDTO => {}", lottoDTO);
         return "/mainview/main";
     }
 

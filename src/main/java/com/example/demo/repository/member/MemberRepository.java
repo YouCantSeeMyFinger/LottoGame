@@ -16,9 +16,10 @@ public class MemberRepository implements IMemberRepo {
 
     @Override
     public Member save(Member member) {
-        member.setId(sequence);
-        log.info("memberId => {}", memberRepo);
-        return memberRepo.put(member.getId(), member);
+        member.setId(++sequence);
+        memberRepo.put(member.getId(), member);
+        log.info("memberRepo => {}", memberRepo);
+        return member;
     }
 
     @Override
@@ -37,6 +38,12 @@ public class MemberRepository implements IMemberRepo {
                 .stream()
                 .filter(member -> member.getLoginId().equals(loginId))
                 .findFirst();
+    }
+
+    @Override
+    public boolean duplicatedMember(Member member) {
+        return this.findAll().stream()
+                .anyMatch(m -> m.getLoginId().equals(member.getLoginId()));
     }
 
     @Override
