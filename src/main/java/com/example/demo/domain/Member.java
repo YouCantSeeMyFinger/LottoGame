@@ -7,6 +7,13 @@ import lombok.Data;
 @Data
 public class Member {
 
+
+    public Member(String loginId, String loginPassword, String name) {
+        this.loginId = loginId;
+        this.loginPassword = loginPassword;
+        this.name = name;
+    }
+
     private Integer Id;
 
 
