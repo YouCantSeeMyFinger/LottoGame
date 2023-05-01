@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.LoginForm;
 import com.example.demo.domain.Member;
 import com.example.demo.repository.member.MemberRepository;
-import com.example.demo.validator.MemberValidator;
+import com.example.demo.validator.member.MemberValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,6 @@ public class LoginController {
             }
             return "/member/addmember";
         }
-
         memberRepository.save(member);
         return "redirect:/";
     }

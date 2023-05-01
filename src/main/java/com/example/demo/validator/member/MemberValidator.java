@@ -1,4 +1,4 @@
-package com.example.demo.validator;
+package com.example.demo.validator.member;
 
 import com.example.demo.domain.Member;
 import com.example.demo.repository.member.MemberRepository;
