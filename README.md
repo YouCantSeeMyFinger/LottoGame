@@ -6,9 +6,9 @@
 # 사용 기술
 1. HTML5
 2. CSS3
-3.Java ( JDK 17 )
-4.Spring boot ( 3.0.5 )
-5.Gradle
+3. Java ( JDK 17 )
+4. Spring boot ( 3.0.5 )
+5. Gradle
 ---------------
 # 약속
 1. MVC패턴을 이용하여 로또 게임의 전반적인 구조를 형성한다.
