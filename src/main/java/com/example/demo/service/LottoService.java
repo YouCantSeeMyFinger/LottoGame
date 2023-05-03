@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.Lotto;
-import com.example.demo.domain.LottoDTO;
+import com.example.demo.dto.lotto.LottoDTO;
 import com.example.demo.repository.lotto.LottoRepoImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

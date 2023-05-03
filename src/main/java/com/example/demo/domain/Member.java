@@ -7,6 +7,13 @@ import lombok.Data;
 @Data
 public class Member {
 
+
+    public Member(String loginId, String loginPassword, String name) {
+        this.loginId = loginId;
+        this.loginPassword = loginPassword;
+        this.name = name;
+    }
+
     private Integer Id;
 
 
@@ -21,4 +28,8 @@ public class Member {
     @NotBlank
     @Pattern(regexp = "^([가-힣]{2,5}|[a-zA-Z]{10,20})$", message = "사용할 수 없는 이름입니다.")
     private String name;
+
+    public Member() {
+
+    }
 }
