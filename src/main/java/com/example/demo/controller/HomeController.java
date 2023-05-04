@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 @Slf4j
@@ -19,14 +20,8 @@ public class HomeController {
 
 
     @GetMapping("/home")
-    public String home(HttpServletRequest request, Model model) {
+    public String home(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model) {
 
-        HttpSession session = request.getSession(false);
-        if (session == null) {
-            return "/login/loginForm";
-        }
-
-        Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
         if (loginMember == null) {
             return "/login/loginForm";
         }
