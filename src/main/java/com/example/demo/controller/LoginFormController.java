@@ -3,10 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.domain.LoginForm;
 import com.example.demo.domain.Member;
 import com.example.demo.service.LoginFormService;
-import com.example.demo.session.SessionManager;
-import jakarta.servlet.http.Cookie;
+import com.example.demo.session.SessionConst;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -25,7 +24,6 @@ import java.util.List;
 public class LoginFormController {
 
     private final LoginFormService loginFormService;
-    private final SessionManager sessionManager;
 
     @GetMapping("/member-login")
     public String loginMain(@ModelAttribute("loginForm") LoginForm loginForm) {
@@ -33,7 +31,8 @@ public class LoginFormController {
     }
 
     @PostMapping("/member-login")
-    public String login(@Validated @ModelAttribute("loginForm") LoginForm loginForm, BindingResult bindingResult, HttpServletResponse response) {
+    public String login(@Validated @ModelAttribute("loginForm") LoginForm loginForm, BindingResult bindingResult, HttpServletRequest request) {
+
         if (bindingResult.hasErrors()) {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
             for (FieldError fieldError : fieldErrors) {
@@ -48,21 +47,23 @@ public class LoginFormController {
             bindingResult.reject("login Fail", "로그인 정보가 일치하지 않습니다.");
             return "/login/loginForm";
         }
-
-        // 세션 매니저를 통한 쿠키 생성 및 세션 생성
-        // 1 ) 쿠키 생성 Key = UUID , Value = Member
-        // 2 ) Session 생성 Key = MySessionId , Value = UUID
-        sessionManager.createSession(member, response);
+        // HttpServletRequest API에 이미 정의 되어있음
+        // 참고로 true 값을 주는 이유는 없는 경우는 만들어야 하기 때문에 false 경우는 없으면 null 반환한다.
+        HttpSession session = request.getSession(true);
+        session.setAttribute(SessionConst.LOGIN_MEMBER, member);
+        log.info("session => {}", session);
         return "redirect:/home";
     }
 
     @PostMapping("/logout")
     public String logout(HttpServletRequest request) {
-//        Cookie id = new Cookie("memberId", null);
-//        id.setMaxAge(0);
-//        response.addCookie(id);
+        // false의 이유 => 세션의 삭제가 목표이기 때문에 만약 해당 세션이 없다면 굳이 만들어줄 필요가 없다.
+        HttpSession session = request.getSession(false);
 
-        sessionManager.expire(request);
+        if (session != null) {
+            session.invalidate();
+        }
+
         return "redirect:/login";
     }
 }

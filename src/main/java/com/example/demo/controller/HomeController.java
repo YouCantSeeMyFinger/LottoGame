@@ -2,9 +2,10 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.Member;
 import com.example.demo.repository.member.MemberRepository;
+import com.example.demo.session.SessionConst;
 import com.example.demo.session.SessionManager;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,19 +17,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class HomeController {
 
-    private final MemberRepository memberRepository;
-    private final SessionManager sessionManager;
-
 
     @GetMapping("/home")
     public String home(HttpServletRequest request, Model model) {
 
-        Member member = (Member) sessionManager.findSession(request);
-
-        if (member == null) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
             return "/login/loginForm";
         }
-        model.addAttribute("member", member);
+
+        Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
+        if (loginMember == null) {
+            return "/login/loginForm";
+        }
+        model.addAttribute("member", loginMember);
         return "/login/loginhome";
     }
 
