@@ -3,7 +3,6 @@ package com.example.demo.session;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -37,12 +36,14 @@ public class SessionManager {
 
         // UUID를 이용한 세션 키 생성 후 저장
         String uuid = UUID.randomUUID().toString();
-        sessions.put(uuid, value);
 
-        // 응답으로로 쿠키를 생성
+        // 응답으로 쿠키를 생성
         // 쿠키에 UUID를 Value로 저장
         Cookie cookie = new Cookie(MY_SESSION_ID, uuid);
         response.addCookie(cookie);
+
+        sessions.put(uuid, value);
+        log.info("session repo => {}" , sessions);
     }
 
     /**

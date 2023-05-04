@@ -3,7 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.domain.LoginForm;
 import com.example.demo.domain.Member;
 import com.example.demo.service.LoginFormService;
+import com.example.demo.session.SessionManager;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import java.util.List;
 
 @Slf4j
@@ -22,6 +25,7 @@ import java.util.List;
 public class LoginFormController {
 
     private final LoginFormService loginFormService;
+    private final SessionManager sessionManager;
 
     @GetMapping("/member-login")
     public String loginMain(@ModelAttribute("loginForm") LoginForm loginForm) {
@@ -45,16 +49,20 @@ public class LoginFormController {
             return "/login/loginForm";
         }
 
-        Cookie idCookie = new Cookie("memberId", String.valueOf(member.getId()));
-        response.addCookie(idCookie);
+        // 세션 매니저를 통한 쿠키 생성 및 세션 생성
+        // 1 ) 쿠키 생성 Key = UUID , Value = Member
+        // 2 ) Session 생성 Key = MySessionId , Value = UUID
+        sessionManager.createSession(member, response);
         return "redirect:/home";
     }
 
     @PostMapping("/logout")
-    public String logout(HttpServletResponse response) {
-        Cookie id = new Cookie("memberId", null);
-        id.setMaxAge(0);
-        response.addCookie(id);
+    public String logout(HttpServletRequest request) {
+//        Cookie id = new Cookie("memberId", null);
+//        id.setMaxAge(0);
+//        response.addCookie(id);
+
+        sessionManager.expire(request);
         return "redirect:/login";
     }
 }
