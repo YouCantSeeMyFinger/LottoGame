@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.membership;
 
 import com.example.demo.domain.Member;
 import com.example.demo.repository.member.MemberRepository;
@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class LoginController {
+public class MembershipController {
 
     private final MemberRepository memberRepository;
     private final MemberValidator memberValidator;

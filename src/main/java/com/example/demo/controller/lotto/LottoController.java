@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.lotto;
 
 import com.example.demo.domain.Lotto;
 import com.example.demo.dto.lotto.LottoDTO;
@@ -61,11 +61,6 @@ public class LottoController {
         log.info("findId => {}", id);
         model.addAttribute("lottoObject", id);
         return "/show-single-lotto";
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "/login/login";
     }
 
 
