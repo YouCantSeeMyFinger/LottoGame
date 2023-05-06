@@ -1,4 +1,4 @@
-package com.example.demo.testdatainit;
+package com.example.demo;
 
 
 import com.example.demo.domain.Member;
