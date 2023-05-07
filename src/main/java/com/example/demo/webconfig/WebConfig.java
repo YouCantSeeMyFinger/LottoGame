@@ -17,7 +17,7 @@ public class WebConfig {
      */
 
     @Bean
-    public FilterRegistrationBean logFilter() {
+    public FilterRegistrationBean loginFilter() {
         FilterRegistrationBean<Filter> filterBean = new FilterRegistrationBean<>();
         filterBean.setFilter(new LogFilter());
         filterBean.setOrder(1);
