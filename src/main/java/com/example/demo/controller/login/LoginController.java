@@ -35,11 +35,13 @@ public class LoginController {
 
     @GetMapping("/member-login")
     public String loginMain(@ModelAttribute("loginForm") LoginForm loginForm) {
+        log.info("시작Get");
         return "/login/loginForm";
     }
 
     @PostMapping("/member-login")
     public String login(@Validated @ModelAttribute("loginForm") LoginForm loginForm, BindingResult bindingResult, HttpServletRequest request) {
+        log.info("시작post");
 
         if (bindingResult.hasErrors()) {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
@@ -57,8 +59,7 @@ public class LoginController {
         }
         HttpSession session = request.getSession(true);
         session.setAttribute(SessionConst.LOGIN_MEMBER, member);
-        log.info("session => {}", session);
-        return "redirect:/home";
+        return "redirect:";
     }
 
     @PostMapping("/logout")
@@ -77,7 +78,6 @@ public class LoginController {
                         response.addCookie(cookie);
                     });
         }
-
         return "redirect:/login";
     }
 }
