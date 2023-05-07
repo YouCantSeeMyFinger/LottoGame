@@ -1,4 +1,4 @@
-package com.example.demo.web;
+package com.example.demo.web.filter;
 
 import com.example.demo.session.SessionConst;
 import jakarta.servlet.*;
@@ -18,12 +18,12 @@ public class LoginCheckFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        log.info("로그인채크필터 시작");
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
         String requestURI = httpServletRequest.getRequestURI();
         String uuid = UUID.randomUUID().toString();
-
 
         try {
             if (this.checkLogin(requestURI)) {
@@ -39,6 +39,7 @@ public class LoginCheckFilter implements Filter {
         } catch (Exception e) {
             throw e;
         }
+        log.info("로그인체크필터 끝");
     }
 
     public boolean checkLogin(String requestURI) {
