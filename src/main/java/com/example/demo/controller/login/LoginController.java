@@ -35,14 +35,11 @@ public class LoginController {
 
     @GetMapping("/member-login")
     public String loginMain(@ModelAttribute("loginForm") LoginForm loginForm) {
-        log.info("시작Get");
         return "/login/loginForm";
     }
 
     @PostMapping("/member-login")
     public String login(@Validated @ModelAttribute("loginForm") LoginForm loginForm, BindingResult bindingResult, HttpServletRequest request) {
-        log.info("시작post");
-
         if (bindingResult.hasErrors()) {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
             for (FieldError fieldError : fieldErrors) {
