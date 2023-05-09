@@ -40,7 +40,6 @@ public class LoginController {
 
     @PostMapping("/member-login")
     public String login(@Validated @ModelAttribute("loginForm") LoginForm loginForm, BindingResult bindingResult, HttpServletRequest request) {
-
         if (bindingResult.hasErrors()) {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
             for (FieldError fieldError : fieldErrors) {
@@ -57,8 +56,7 @@ public class LoginController {
         }
         HttpSession session = request.getSession(true);
         session.setAttribute(SessionConst.LOGIN_MEMBER, member);
-        log.info("session => {}", session);
-        return "redirect:/home";
+        return "redirect:";
     }
 
     @PostMapping("/logout")
@@ -77,7 +75,6 @@ public class LoginController {
                         response.addCookie(cookie);
                     });
         }
-
         return "redirect:/login";
     }
 }

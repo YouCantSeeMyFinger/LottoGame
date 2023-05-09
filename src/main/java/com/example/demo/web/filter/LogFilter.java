@@ -1,4 +1,4 @@
-package com.example.demo.web;
+package com.example.demo.web.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +13,7 @@ public class LogFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        log.info("doFilter :: invoked");
+        log.info("로그인필터 시작");
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         String requestURI = httpServletRequest.getRequestURI();
         String uuid = UUID.randomUUID().toString();
@@ -25,6 +25,7 @@ public class LogFilter implements Filter {
             throw e;
         } finally {
             log.info("RequestURI => {} , UUID => {}", requestURI, uuid);
+            log.info("로그인필터 끝");
         }
     }
 }
