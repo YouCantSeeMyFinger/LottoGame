@@ -56,6 +56,7 @@ public class LoginController {
         }
         HttpSession session = request.getSession(true);
         session.setAttribute(SessionConst.LOGIN_MEMBER, member);
+
         return "redirect:";
     }
 
@@ -71,6 +72,7 @@ public class LoginController {
             Arrays.stream(cookies)
                     .filter(cookie -> cookie.getName().equals("JSESSIONID"))
                     .forEach(cookie -> {
+                        log.info(" cookie {}" , cookie.toString());
                         cookie.setMaxAge(0);
                         response.addCookie(cookie);
                     });

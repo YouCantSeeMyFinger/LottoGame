@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.argumentresolver.Login;
 import com.example.demo.domain.Member;
 import com.example.demo.session.SessionConst;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ public class HomeController {
 
 
     @GetMapping("/home")
-    public String home(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model) {
+    public String home(@Login Member loginMember, Model model) {
 
         if (loginMember == null) {
             return "/login/loginForm";

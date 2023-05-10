@@ -1,6 +1,5 @@
 package com.example.demo.webconfig;
-
-
+import com.example.demo.argumentresolver.LoginMemberArgumentResolver;
 import com.example.demo.web.filter.LogFilter;
 import com.example.demo.web.filter.LoginCheckFilter;
 import com.example.demo.web.interceptor.LogInterceptor;
@@ -8,14 +7,21 @@ import com.example.demo.web.interceptor.LoginCheckInterceptor;
 import jakarta.servlet.Filter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 @Configuration
 @Slf4j
 public class WebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(new LoginMemberArgumentResolver());
+    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
